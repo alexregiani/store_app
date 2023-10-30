@@ -9,8 +9,8 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       body: Center(
         child: ElevatedButton(
-          onPressed: pressButton(context),
-          child: Text('Press me'),
+          onPressed: () => pressButton(context),
+          child: const Text('Press me'),
         ),
       ),
       appBar: AppBar(
@@ -23,5 +23,9 @@ class HomePage extends StatelessWidget {
 
 pressButton(context) {
   Navigator.push(
-      context, MaterialPageRoute(builder: (context) => const DetailsPage()));
+    context,
+    MaterialPageRoute(
+      builder: (context) => const DetailsPage(),
+    ),
+  );
 }
