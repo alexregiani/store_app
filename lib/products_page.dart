@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class DetailsPage extends StatelessWidget {
-  const DetailsPage({super.key});
+class ProductPage extends StatelessWidget {
+  const ProductPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +12,12 @@ class DetailsPage extends StatelessWidget {
         body: ListView.builder(
           itemCount: items.length,
           itemBuilder: (context, index) {
-            return Text('test');
+            final item = items[index];
+            return ListTile(
+              title: Text('Item $item'),
+              subtitle: Text('description'),
+              trailing: Icon(Icons.arrow_circle_right_outlined),
+            );
           },
         ));
   }

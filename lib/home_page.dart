@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:store_app/details_page.dart';
+import 'package:store_app/products_page.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -25,7 +25,7 @@ pressButton(context) {
   Navigator.push(
     context,
     MaterialPageRoute(
-      builder: (context) => const DetailsPage(),
+      builder: (context) => const ProductPage(),
     ),
   );
 }
