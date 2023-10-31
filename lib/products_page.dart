@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:store_app/details_page.dart';
 
 class ProductPage extends StatelessWidget {
   const ProductPage({super.key});
@@ -14,11 +15,21 @@ class ProductPage extends StatelessWidget {
           itemBuilder: (context, index) {
             final item = items[index];
             return ListTile(
+              onTap: () => showDetailPage(context),
               title: Text('Item $item'),
               subtitle: Text('description'),
-              trailing: Icon(Icons.arrow_circle_right_outlined),
+              trailing: const Icon(Icons.arrow_circle_right_outlined),
             );
           },
         ));
   }
+}
+
+showDetailPage(context) {
+  Navigator.push(
+    context,
+    MaterialPageRoute(
+      builder: (context) => DetailsPage(),
+    ),
+  );
 }
