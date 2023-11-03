@@ -21,22 +21,27 @@ class Name {
   Name({required this.firstName, required this.lastName});
 
   factory Name.fromJson(Map<String, dynamic> json) {
-    return Name(firstName: json['name']['first'], lastName: json['name']['last']);
+    final nameData = json['name'];
+    return Name(firstName: nameData['first'], lastName: nameData['last']);
   }
 }
 
 class Location {
   final Street street;
+  final Coordinates coordinates;
   final String city;
   final String country;
 
-  Location({required this.street, required this.city, required this.country});
+  Location({required this.street, required this.coordinates, required this.city, required this.country});
 
   factory Location.fromJson(Map<String, dynamic> json) {
+    final streetData = json['location']['street'];
+    final coordinatesData = json['location']['coordinates'];
     return Location(
-      street: json['location']['street']['name'],
+      street: Street(name: streetData['name'], number: streetData['number']),
+      coordinates: Coordinates(latitude: coordinatesData['latitude'], longitude: coordinatesData['longitude']),
       city: json['location']['city'],
-      country: json['location']['country']
+      country: json['location']['country'],
     );
   }
 }
@@ -48,6 +53,13 @@ class Street {
   Street({required this.number, required this.name});
 }
 
+class Coordinates {
+  final double latitude;
+  final double longitude;
+
+  Coordinates({required this.latitude, required this.longitude});
+}
+
 class Picture {
   final String large;
   final String medium;
@@ -56,10 +68,11 @@ class Picture {
   Picture({required this.large, required this.medium, required this.thumbnail});
 
   factory Picture.fromJson(Map<String, dynamic> json) {
+    final pictureData = json['picture'];
     return Picture(
-      large: json['picture']['large'],
-      medium: json['picture']['medium'],
-      thumbnail: json['picture']['thumbnail'],
+      large: pictureData['large'],
+      medium: pictureData['medium'],
+      thumbnail: pictureData['thumbnail'],
     );
   }
 }
